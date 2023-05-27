@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSpotsTable extends Migration
+class CreateMedicalsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateSpotsTable extends Migration
      */
     public function up()
     {
-        Schema::create('spots', function (Blueprint $table) {
+        Schema::create('medicals', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('regional_id')->length(20);
-            $table->string('name', 255);
-            $table->text('address');
-            $table->tinyInteger('serve')->length(4);
-            $table->integer('capacity')->length(11);
+            $table->bigInteger('spot_id')->default(20);
+            $table->bigInteger('user_id')->default(20);
+            $table->enum('role', ['officer','doctor']);
+            $table->string('name');
+            $table->timestamps();
         });
     }
 
@@ -30,6 +30,6 @@ class CreateSpotsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('spots');
+        Schema::dropIfExists('medicals');
     }
 }
